@@ -5,7 +5,8 @@ const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html')
+  //res.sendFile(__dirname + '/index.html')
+  res.send('w')
 })
 
 
@@ -20,4 +21,4 @@ app.get('/:url', (req, res) => {
   res.redirect('https://google.com')
 })
 
-app.listen(3000)
+app.listen(process.env.PORT)
