@@ -36,8 +36,7 @@ router.post('/', async (req, res) => {
       values: [values.target, values.url]
     }
     const result = await db.query(query)
-    res.send(result.rows)
-    //res.redirect(`/short/${result.rows[0].id}`)
+    res.render('short', {url: result.rows[0].url, target: result.rows[0].target})
   }
   catch (err) {
     res.send(`${err}`)
