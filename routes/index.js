@@ -12,21 +12,15 @@ router.get('/', (req, res) => {
 
 
 router.get('/:url', async (req, res) => {
+  console.log(req.params)
   try {
-    const query = {
-      text: 'SELECT target from links WHERE url = $1',
-      values: [req.params.url]
-    }
-    const result = await db.query(query)  
-    if (result.rows.length === 0) {
-      res.send('Could not find url')
-      return
-    }
+    const result = await db.retrieveTarget(req.params.url)
 
-    res.redirect(result.rows[0].target)
+    res.redirect(result)
   } 
   catch (err) {
-    
+    res.send(`${err}`)
+    console.error(`${err}`)
   }
 })
 
