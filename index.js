@@ -7,9 +7,8 @@ const mustache = require('mustache-express')
 const app = express()
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(express.static('public'))
-app.engine('html', mustache());
+app.engine('html', mustache(__dirname + '/views/partials', '.html'));
 app.set('view engine', 'html');
-app.set('views', __dirname + '/views');
 
 
 const routes = {}
